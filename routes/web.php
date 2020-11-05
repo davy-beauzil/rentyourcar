@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/reservation-voiture', function () {
-    return view('reservation-voiture');
+Route::get('/gestion-voiture', function () {
+    return view('gestion-voiture');
+});
+
+Route::get('/modification-voiture', function () {
+    return view('modification-voiture');
 });
