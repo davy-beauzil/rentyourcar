@@ -4,9 +4,31 @@
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img class="d-block w-100" src="https://www.jerevends.be/uploads/slider/SLIDE_6469225fe72b43636bb2100355c85b74.jpg" alt="First slide">
+                <div class="header-text hidden-xs">
+                    <div class="carousel-caption">
+                        <h1>
+                            <span><strong>RentYourCarhubert</strong></span>
+                        </h1>
+                        <br>
+                        <h2>
+                            <span>Location de véhicule de luxe</span>
+                        </h2>
+                    </div>
+                </div>
             </div>
             <div class="carousel-item">
                 <img class="d-block w-100" src="https://www.limoges-autos.com/wp-content/uploads/2013/05/slider_1_1.png" alt="Second slide">
+                <div class="header-text hidden-xs">
+                    <div class="carousel-caption">
+                        <h1>
+                            <span><strong>RentYourCarhubert</strong></span>
+                        </h1>
+                        <br>
+                        <h2>
+                            <span>Location de véhicule de luxe</span>
+                        </h2>
+                    </div>
+                </div>
             </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -19,3 +41,14 @@
         </a>
     </div>
 </body>
+<style>
+
+
+
+.carousel-caption {
+  background: rgba(34, 34, 34, 0.5);
+
+  bottom: 35%;
+}
+
+</style>

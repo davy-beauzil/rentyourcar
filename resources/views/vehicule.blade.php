@@ -14,7 +14,7 @@
     <body>
     <!-- Liste -->
         <div class="container">
-            <h2>Liste des véhicules: </h2>
+            <h1 class="display-4 text-center">Liste des véhicules</h1>
             <div class="row mb-5">
                 <div class="col-md-3">
                     <div class="card">
