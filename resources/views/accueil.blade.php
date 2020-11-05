@@ -5,11 +5,19 @@
         <link rel="stylesheet" href="style.css">
         <meta charset="utf-8" />
         <script src="javascript.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
         <title>RentYourCarhubert</title>
     </head>
+
+    <?php include 'header.inc.blade.php'; ?>
+    <?php include 'carousel.inc.blade.php'; ?>
+
     <body>
-        <?php include 'header.inc.php'; ?>
-        <br><br><br><br><br><br><br><br><br><br><br>
-        <?php include 'footer.inc.php'; ?>
+        
     </body>
+
+    <?php include 'footer.inc.blade.php'; ?>
+
 </html>

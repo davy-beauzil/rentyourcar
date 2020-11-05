@@ -1,23 +1,24 @@
 <header>
-	
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-
+	<!-- NavBar -->	
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark">
 		<a class="navbar-brand" href="#">RentYourCarhubert</a>
-	
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
 		<ul class="nav navbar-nav ml-auto">
-				<li><a class="nav-link" href="index.php">Accueil</a></li>
-				<li><a class="nav-link" href="annuaire.php">Modele</a></li>
+				<li><a class="nav-link" href="accueil.php">Accueil</a></li>
+				<li><a class="nav-link" href="vehicule.php">Vehicule</a></li>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="crud.php" id="navbardrop" data-toggle="dropdown">Location</a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="ajouter.php">Ajouter</a>
-						<a class="dropdown-item" href="modifier.php">Liste</a>
+						<a class="dropdown-item" href="reservation.php">Reservation</a>
+						<a class="dropdown-item" href="historique.php">Historique</a>
 					</div>
 				</li>
 				<li><a class="nav-link" href="contact.php">Contact</a></li>
+				<li><button class="btn btn-danger navbar-btn">Connexion</button></li>
 		</ul>
-		<button class="btn btn-danger navbar-btn">Connexion</button>
-		</div>
 	</nav>
 
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
