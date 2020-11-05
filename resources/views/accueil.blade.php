@@ -11,13 +11,13 @@
         <title>RentYourCarhubert</title>
     </head>
 
-    <?php include 'header.inc.blade.php'; ?>
-    <?php include 'carousel.inc.blade.php'; ?>
+    @include('header') 
+    @include('carousel') 
 
     <body>
         
     </body>
 
-    <?php include 'footer.inc.blade.php'; ?>
+    @include('footer') 
 
 </html>

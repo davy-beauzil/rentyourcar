@@ -9,7 +9,7 @@
         <title>RentYourCarhubert</title>
     </head>
 
-    <?php include 'header.inc.blade.php'; ?>
+    @include('header') 
 
     <body>
     <!-- Liste -->
@@ -51,5 +51,5 @@
             </div>
         </div>
     </body>
-    <?php include 'footer.inc.blade.php'; ?>
+    @include('footer')
 </html>
