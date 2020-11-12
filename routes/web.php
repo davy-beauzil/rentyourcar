@@ -14,7 +14,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('accueil');
+});
+
+
+Route::get('/accueil', function () {
+    return view('accueil');
+});
+
+Route::get('/vehicule', function () {
+    return view('vehicule');
+});
+
+Route::get('/contact', function () {
+    return view('contact');
 });
 
 
@@ -27,4 +40,5 @@ Route::get('/ficheVehicule', function () {
 
 
 
+>>>>>>> routes/web.php
 
