@@ -39,7 +39,7 @@
 
                 <div class="d-flex flex-row justify-content-around">
                     <input class="edit-button my-2 col-3 btn-danger p-2" type="button" value="Modifier">
-                    <input class="edit-button my-2 col-3 btn-success p-2" type="button" value="Nouvelle voiture">
+                    <a class="edit-button my-2 col-3 btn-success p-2" href="/creation-voiture" >Nouvelle voiture</a>
                 </div>
                 
             </form>

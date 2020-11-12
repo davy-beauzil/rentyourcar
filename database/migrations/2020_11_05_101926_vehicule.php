@@ -15,8 +15,10 @@ class Vehicule extends Migration
     {
         Schema::create('vehicule', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('modele_id');
             $table->dateTime('dateAchat');
             $table->timestamps();
+            $table->foreign('modele_id')->references('id')->on('modele');
         });
     }
 

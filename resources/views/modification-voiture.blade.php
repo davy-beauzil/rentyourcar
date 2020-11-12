@@ -14,19 +14,20 @@
     
     <div class="container mt-5">
         <div class="row d-flex flex-row align-items-center">
-            <form class="d-flex flex-column col-6" action="">
+            <form class="d-flex flex-column col-6" action="{{ $action }}" method="post">
+                @csrf
                 <label class="pl-3 mb-0 label-infos" for="nom">Nom de la voiture</label>
-                <input class="mb-3 input-infos p-1" type="text" value="nom de la voiture pré-rempli" name="nom">
-                <label class="pl-3 mb-0 label-infos" for="tarifKmSupp">Tarif du km supplémentaire</label>
-                <input class="mb-3 input-infos p-1" type="text" value="tarif du km supplémentaire pré-rempli" name="tarifkmSupp">
+                <input class="mb-3 input-infos p-1" type="text" name="nom">
+                <label class="pl-3 mb-0 label-infos" for="tarifKmSupplementaire">Tarif du km supplémentaire</label>
+                <input class="mb-3 input-infos p-1" type="number" name="tarifKmSupplementaire">
                 <label class="pl-3 mb-0 label-infos" for="nbPlaces">Nombre de places</label>
-                <input class="mb-3 input-infos p-1" type="text" value="nombre de place pré-rempli" name="nbPlaces">
+                <input class="mb-3 input-infos p-1" type="number" name="nbPlaces">
                 <label class="pl-3 mb-0 label-infos" for="vitesseMax">Vitesse maximale</label>
-                <input class="mb-3 input-infos p-1" type="text" value="vitesse maximale pré-rempli" name="vitesseMax">
+                <input class="mb-3 input-infos p-1" type="number" name="vitesseMax">
                 <label class="pl-3 mb-0 label-infos" for="description">Description</label>
-                <textarea class="mb-3 input-infos p-1" name="description" id="textarea-desc">description pré-rempli</textarea>
+                <textarea class="mb-3 input-infos p-1" name="description" id="textarea-desc"></textarea>
 
-                <input class="edit-button my-2 col-3 btn-success p-1" type="button" value="Modifier">
+                <input class="edit-button my-2 col-3 btn-success p-1" type="submit" value="{{ $button }}">
             </form>
 
             <div class="apercu col-6">

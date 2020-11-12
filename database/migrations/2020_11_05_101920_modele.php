@@ -19,7 +19,8 @@ class Modele extends Migration
             $table->float('tarifKmSupplementaire', 4, 2);
             $table->integer('nbPlaces');
             $table->integer('vitesseMax');
-            $table->string('description');
+            $table->longText('description');
+            $table->string('pathImage');
             $table->timestamps();
         });
     }
