@@ -62,5 +62,18 @@ Route::get('/ficheVehicule', function () {
 });
 
 
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/', function ()    {
+    });
+    Route::get('comptes', function () {
+    });
+});
+
+Auth::routes();
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
