@@ -17,6 +17,7 @@ Route::get('/', function () {
     return view('accueil');
 });
 
+
 Route::get('/accueil', function () {
     return view('accueil');
 });
@@ -28,4 +29,16 @@ Route::get('/vehicule', function () {
 Route::get('/contact', function () {
     return view('contact');
 });
+
+
+use App\Http\Controllers\LocationController;
+Route::get('/ficheVehicule', function () {
+    return view('ficheVehicule');
+});
+
+
+
+
+
+>>>>>>> routes/web.php
 
