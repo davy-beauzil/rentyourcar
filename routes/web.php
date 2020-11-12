@@ -31,8 +31,9 @@ Route::get('/fournisseur-start-with-{n}', [FournisseurController::class, 'startW
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('accueil');
 });
+
 
 Route::get('/gestion-voiture', [ManageCar::class, 'initialize']);
 
@@ -40,4 +41,26 @@ Route::get('/modification-voiture', [EditCar::class, 'initialize']);
 
 Route::get('/creation-voiture', [CreateCar::class, 'initialize']);
 Route::post('/creation-voiture', [CreateCar::class, 'createNewModel']);
+
+
+Route::get('/accueil', function () {
+    return view('accueil');
+});
+
+Route::get('/vehicule', function () {
+    return view('vehicule');
+});
+
+Route::get('/contact', function () {
+    return view('contact');
+});
+
+
+use App\Http\Controllers\LocationController;
+Route::get('/ficheVehicule', function () {
+    return view('ficheVehicule');
+});
+
+
+
 
