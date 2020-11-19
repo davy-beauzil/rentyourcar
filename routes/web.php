@@ -56,10 +56,9 @@ Route::get('/contact', function () {
 });
 
 
-use App\Http\Controllers\LocationController;
-Route::get('/ficheVehicule', function () {
-    return view('ficheVehicule');
-});
+use App\Http\Controllers\LocationVehicule;
+Route::get('ficheVehicule/{n}', [LocationVehicule::class, 'recup'])->where('n', '[0-9]+');
+
 
 
 Route::get('/', function () {

@@ -15,7 +15,7 @@
             <div class="row">
 
                 <div class="col-md-6 info">
-                <img src="" alt="Photo voiture" heigth="100%" width="100%">
+                <img src="../../img/{{$numero->pathImage}}" id="imageVoiture" alt="Photo voiture" heigth="100%" width="100%">
                 </div>
 
                 <div class="col-md-1">
@@ -26,25 +26,25 @@
                         <div>
 
                             <label class="label" for="name">Modele : </label>
-                            <label for="name">[a completer]</label>
+                            <label for="name">{{$numero->nom}}</label>
                             <br/><br/>
                             <label class="label" for="name">Vitesse max : </label>
-                            <label for="name">[a completer]</label>
+                            <label for="name">{{$numero->vitesseMax}} km/h</label>
                             <br/><br/>
                             <label class="label" for="name">Tarif/km Supplémentaire : </label>
-                            <label for="name">[a completer]</label>
+                            <label for="name">{{$numero->tarifKmSupplementaire}} km/h</label>
                             <br/><br/>
                             <label class="label" for="name">Description : </label>
-                            <label for="name">[a completer]</label>
+                            <label for="name">{{$numero->description}}</label>
                             <br/><br/>
                             <label class="label" for="name">Sièges : </label>
-                            <label for="name">[a completer]</label>
+                            <label for="name">{{$numero->nbPlaces}}</label>
                             <br/><br/>
                             <label for="name">Selectionner une date : </label>
                         </div>
 
                         <div>
-                            <input type="date" value="AAAA-MM-JJ"/> 
+                            <input id="calendrier" onchange="verifDate()" type="date" value="AAAA-MM-JJ"/> 
                         </div>
 
                         <br/><br/>
@@ -92,9 +92,36 @@ body{
 
 }
 
+#imageVoiture{
+
+    margin-top: 30%;
+}
+
 </style>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+function verifDate(){
+
+    $.ajax({
+
+        success: function () {
+
+            //if( == "#calendrier".val()){
+            //    "#bouton".prop( "disabled", true );
+            //}
+        },
+
+        error: function() {
+            console.log("ERREUR");
+        }
+
+    });
+
+};
+</script>
 
 </html>
