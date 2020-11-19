@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Vehicule extends Model
+class Client extends Model
 {
+    use HasFactory;
 
-    protected $table = 'vehicule';
+    protected $table = 'client';
 
-    public function modele(){
-        return $this->belongsTo('App\Models\Modele');
+    public function pays(){
+        return $this->belongsTo('App\Models\Pays');
     }
 
     public function locations(){
