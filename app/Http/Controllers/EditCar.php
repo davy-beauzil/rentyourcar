@@ -7,6 +7,6 @@ use Illuminate\Http\Request;
 class EditCar extends Controller
 {
     public function initialize(){
-        return view('modification-voiture', ['button' => 'Modifier']);
+        return view('modification-voiture', ['button' => 'Modifier', 'action' => '']);
     }
 }
