@@ -1,4 +1,4 @@
-<footer class="bg-dark text-light position-static fixed-bottom">
+<footer class="bg-dark text-light position-fixed fixed-bottom">
 
     <div class="container-fluid">
         <div class="row col-12">

@@ -5,16 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Vehicule extends Model
+class Modele_FormuleSansChauffeur extends Model
 {
-
-    protected $table = 'vehicule';
+    use HasFactory;
 
     public function modele(){
         return $this->belongsTo('App\Models\Modele');
     }
 
-    public function locations(){
-        return $this->hasMany('App\Models\Location');
+    public function formuleSansChauffeur(){
+        return $this->belongsTo('App\Models\FormuleSansChauffeur');
     }
 }
