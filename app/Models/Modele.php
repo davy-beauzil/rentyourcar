@@ -13,4 +13,8 @@ class Modele extends Model
     public function vehicules(){
         return $this->hasMany('App\Models\Vehicule');
     }
+
+    public function formuleSansChauffeur(){
+        return $this->hasMany('App\Models\Modele_FormuleSansChauffeur');
+    }
 }
