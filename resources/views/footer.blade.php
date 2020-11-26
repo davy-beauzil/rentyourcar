@@ -1,4 +1,4 @@
-<footer class="bg-dark text-light position-fixed fixed-bottom">
+<footer class="bg-dark text-light">
 
     <div class="container-fluid">
         <div class="row col-12">
@@ -7,8 +7,16 @@
     </div>
 
     <style>
+    
+        body{
+            position: relative;
+            min-height: 100vh;
+        }
         footer{
             width:100vw;
+            position: absolute;
+            bottom: 0;
+            display: block;
         }
     </style>
 	 
