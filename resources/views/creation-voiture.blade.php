@@ -31,12 +31,10 @@
                     <div class="apercu" style="display: none;">
                         <img class="image-voiture col-12" src="https://via.placeholder.com/500x250" alt="image de voiture">
                     </div>
-                    <input required class="edit-button my-2 col-3 btn-secondary p-1" type="submit" value="{{ $button }}">
+
+                    <input required class="edit-button col-3 btn-secondary p-1" type="submit" value="{{ $button }}">
                 </form>
             </div>
-
-                <input required class="edit-button col-3 btn-secondary p-1" type="submit" value="{{ $button }}">
-            </form>
         </div>
         
         <!-- Afficher Footer -->
