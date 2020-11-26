@@ -9,47 +9,70 @@
         <title>RentYourCarhubert</title>
     </head>
 
+    <!-- Afficher Header -->
     @include('header') 
 
     <body>
-    <!-- Liste -->
+    <!-- Liste Véhicule -->
         <div class="container">
+            <br>
             <h1 class="display-4 text-center">Liste des véhicules</h1>
-            <div class="row mb-5">
-                <div class="col-md-3">
-                    <div class="card">
-                        <img src="https://images.caradisiac.com/logos-ref/gamme/gamme--tesla-model-s/S5-gamme--tesla-model-s.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Tesla Model S</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <img src="https://images.caradisiac.com/logos-ref/gamme/gamme--tesla-model-3/S5-gamme--tesla-model-3.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Tesla Model 3</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <img src="https://images.caradisiac.com/logos-ref/gamme/gamme--tesla-model-x/S5-gamme--tesla-model-x.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Tesla Model X</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <img src="https://images.caradisiac.com/logos-ref/gamme/gamme--tesla-model-y/S5-gamme--tesla-model-y.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Tesla Model Y</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <br>
         </div>
+
+        <?php
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "rentyourcar";
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        
+        if ($conn->connect_error) {
+            die("Impossible de se connecter à la base de données : " . $conn->connect_error);
+        }
+        $sql = "SELECT * FROM modele";
+        $result = $conn->query($sql);
+
+        echo'<div class="container">
+        <div class="row mb-5">';
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                echo '<div class="col-md-3">
+                    <a class="nav-link" href="vehicule/'.$row["id"].'">
+                        <div class="card">
+                            <img src="../../img/'.$row["pathImage"].'"></img>
+                            <div class="card-body">
+                                <h5 class="card-title">'.$row["nom"].'</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>';
+            }
+        } else {
+         echo "0 resultat";
+        }
+        echo '</div> </div>';
+        $conn->close();
+        ?>
+
     </body>
+
+    <!-- Afficher Footer -->
     @include('footer')
+
 </html>
+
+<!-- CSS -->    
+<style>
+    .card{
+        margin-bottom: 10%;
+        width: 15rem; 
+    }
+    .card img{
+        width: 238px;
+        height: 150px;
+    }
+    .card-title{
+        color: black;
+    }
+</style>
