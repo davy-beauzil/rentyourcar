@@ -41,7 +41,7 @@
                     <a class="nav-link" href="ficheVehicule/'.$row["id"].'">
                         <div class="card">
                             <img src="../../img/'.$row["pathImage"].'"></img>
-                            <div class="card-body">
+                            <div class="card-body text-center">
                                 <h5 class="card-title">'.$row["nom"].'</h5>
                             </div>
                         </div>
@@ -64,6 +64,9 @@
 
 <!-- CSS -->    
 <style>
+    body{
+        background-image: linear-gradient(339deg, rgba(47, 47, 47,0.02) 0%, rgba(47, 47, 47,0.02) 42%,transparent 42%, transparent 99%,rgba(17, 17, 17,0.02) 99%, rgba(17, 17, 17,0.02) 100%),linear-gradient(257deg, rgba(65, 65, 65,0.02) 0%, rgba(65, 65, 65,0.02) 11%,transparent 11%, transparent 92%,rgba(53, 53, 53,0.02) 92%, rgba(53, 53, 53,0.02) 100%),linear-gradient(191deg, rgba(5, 5, 5,0.02) 0%, rgba(5, 5, 5,0.02) 1%,transparent 1%, transparent 45%,rgba(19, 19, 19,0.02) 45%, rgba(19, 19, 19,0.02) 100%),linear-gradient(29deg, rgba(28, 28, 28,0.02) 0%, rgba(28, 28, 28,0.02) 33%,transparent 33%, transparent 40%,rgba(220, 220, 220,0.02) 40%, rgba(220, 220, 220,0.02) 100%),linear-gradient(90deg, rgb(255,255,255),rgb(255,255,255));
+    }
     .card{
         margin-bottom: 10%;
         width: 15rem; 
