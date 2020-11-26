@@ -21,7 +21,7 @@
         </div>
 
         <?php
-        $servername = "localhost";
+        $servername = "127.0.0.1";
         $username = "root";
         $password = "";
         $dbname = "rentyourcar";
@@ -38,7 +38,7 @@
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
                 echo '<div class="col-md-3">
-                    <a class="nav-link" href="vehicule/'.$row["id"].'">
+                    <a class="nav-link" href="ficheVehicule/'.$row["id"].'">
                         <div class="card">
                             <img src="../../img/'.$row["pathImage"].'"></img>
                             <div class="card-body">

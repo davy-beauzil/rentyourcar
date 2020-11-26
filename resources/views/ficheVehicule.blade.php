@@ -8,44 +8,6 @@
         <title>Document</title>
     </head>
 
-    <body>
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8" id="fiche">
-                <div class="row">
-
-                    <div class="col-md-6 info">
-                    <img src="" alt="Photo voiture" heigth="100%" width="100%">
-                    </div>
-
-                    <div class="col-md-1">
-                    </div>
-
-                    <div class="col-md-4 info">
-                        <form id="form">
-                            <div>
-                                <label class="label" for="name">Modele : </label>
-                                <label for="name">[a completer]</label>
-                                <br/><br/>
-                                <label class="label" for="name">Vitesse max : </label>
-                                <label for="name">[a completer]</label>
-                                <br/><br/>
-                                <label class="label" for="name">Tarif/km Supplémentaire : </label>
-                                <label for="name">[a completer]</label>
-                                <br/><br/>
-                                <label class="label" for="name">Description : </label>
-                                <label for="name">[a completer]</label>
-                                <br/><br/>
-                                <label class="label" for="name">Sièges : </label>
-                                <label for="name">[a completer]</label>
-                                <br/><br/>
-                                <label for="name">Selectionner une date : </label>
-                            </div>
-
-                            <div>
-                                <input type="date" value="AAAA-MM-JJ"/> 
-                            </div>
-
 @include('header')
 <body>
     <div class="row">
