@@ -111,7 +111,7 @@ body{
 
 #imageVoiture{
 
-    margin-top: 30%;
+    margin-top: 10vh;
 }
 
 </style>
