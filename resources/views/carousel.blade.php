@@ -3,7 +3,7 @@
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img class="d-block w-100" src="https://www.jerevends.be/uploads/slider/SLIDE_6469225fe72b43636bb2100355c85b74.jpg" alt="First slide">
+                <img class="d-block w-100" src="https://www.cabinet-roche.com/wp-content/uploads/2016/11/Voiture-de-luxe.jpg" alt="First slide">
                 <div class="header-text hidden-xs">
                     <div class="carousel-caption">
                         <h1>
@@ -41,14 +41,14 @@
         </a>
     </div>
 </body>
+
+<!-- CSS -->
 <style>
-
-
-
+.carousel img {
+    height: 520px;
+}
 .carousel-caption {
   background: rgba(34, 34, 34, 0.5);
-
   bottom: 35%;
 }
-
 </style>
