@@ -36,6 +36,8 @@ Route::get('/', function () {
 
 
 Route::get('/gestion-voiture', [ManageCar::class, 'initialize']);
+Route::post('/gestion-voiture', [EditCar::class, 'updateCar']);
+
 
 Route::get('/modification-voiture', [EditCar::class, 'initialize']);
 
@@ -56,10 +58,11 @@ Route::get('/contact', function () {
 });
 
 
-use App\Http\Controllers\LocationController;
-Route::get('/ficheVehicule', function () {
-    return view('ficheVehicule');
-});
+use App\Http\Controllers\LocationVehicule;
+Route::get('ficheVehicule/{n}', [LocationVehicule::class, 'recup'])->where('n', '[0-9]+');
+
+use App\Http\Controllers\RechercheLoc;
+Route::get('rechercheDate/{n}/{date}', [RechercheLoc::class, 'initialize'])->where('n', '[0-9]+')->where('date');
 
 
 Route::get('/', function () {

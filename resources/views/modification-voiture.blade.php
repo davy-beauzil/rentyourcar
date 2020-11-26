@@ -14,7 +14,7 @@
     
     <div class="container mt-5">
         <div class="row d-flex flex-row align-items-center">
-            <form class="d-flex flex-column col-6" action="{{ $action }}" method="post">
+            <form class="d-flex flex-column col-6 form-car" action="{{ $action }}" method="post">
                 @csrf
                 <label class="pl-3 mb-0 label-infos" for="nom">Nom de la voiture</label>
                 <input class="mb-3 input-infos p-1" type="text" name="nom">
@@ -27,7 +27,7 @@
                 <label class="pl-3 mb-0 label-infos" for="description">Description</label>
                 <textarea class="mb-3 input-infos p-1" name="description" id="textarea-desc"></textarea>
 
-                <input class="edit-button my-2 col-3 btn-success p-1" type="submit" value="{{ $button }}">
+                <input class="edit-button my-5 col-3 btn-success p-1" type="submit" value="{{ $button }}">
             </form>
 
             <div class="apercu col-6">
@@ -50,6 +50,10 @@
         .edit-button{
             border-radius:5px;
             border: none;
+        }
+        .form-car{
+            margin-bottom: 100px;
+            display: block;
         }
     </style>
 
