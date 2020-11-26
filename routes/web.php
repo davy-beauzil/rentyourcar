@@ -59,6 +59,8 @@ Route::get('/contact', function () {
 use App\Http\Controllers\LocationVehicule;
 Route::get('ficheVehicule/{n}', [LocationVehicule::class, 'recup'])->where('n', '[0-9]+');
 
+use App\Http\Controllers\RechercheLoc;
+Route::get('rechercheDate/{n}/{date}', [RechercheLoc::class, 'initialize'])->where('n', '[0-9]+')->where('date');
 
 
 Route::get('/', function () {

@@ -8,6 +8,7 @@
     <title>Document</title>
 </head>
 
+@include('header')
 <body>
     <div class="row">
         <div class="col-md-2"></div>
@@ -44,7 +45,7 @@
                         </div>
 
                         <div>
-                            <input id="calendrier" onchange="verifDate()" type="date" value="AAAA-MM-JJ"/> 
+                            <input id="calendrier" onchange="verifDate()" type="date" value="AAAA-MM-JJ HH:MI:SS"/> 
                         </div>
 
                         <br/><br/>
@@ -59,7 +60,33 @@
         <div class="col-md-2"></div>
     </div>
 </body>
+@include('footer')
 
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+function verifDate(){
+
+    $.ajax({
+
+        success: function () {
+
+            //if( == "#calendrier".val()){
+            //    "#bouton".prop( "disabled", true );
+            //}
+        },
+
+        error: function() {
+            console.log("ERREUR");
+        }
+
+    });
+
+};
+</script>
 
 <style>
 
@@ -71,7 +98,7 @@ body{
 
 #fiche{
     height:80vh;
-    margin: 5% 0 5% 0;
+    margin: 2% 0 5% 0;
     background-image: linear-gradient(339deg, rgba(47, 47, 47,0.02) 0%, rgba(47, 47, 47,0.02) 42%,transparent 42%, transparent 99%,rgba(17, 17, 17,0.02) 99%, rgba(17, 17, 17,0.02) 100%),linear-gradient(257deg, rgba(65, 65, 65,0.02) 0%, rgba(65, 65, 65,0.02) 11%,transparent 11%, transparent 92%,rgba(53, 53, 53,0.02) 92%, rgba(53, 53, 53,0.02) 100%),linear-gradient(191deg, rgba(5, 5, 5,0.02) 0%, rgba(5, 5, 5,0.02) 1%,transparent 1%, transparent 45%,rgba(19, 19, 19,0.02) 45%, rgba(19, 19, 19,0.02) 100%),linear-gradient(29deg, rgba(28, 28, 28,0.02) 0%, rgba(28, 28, 28,0.02) 33%,transparent 33%, transparent 40%,rgba(220, 220, 220,0.02) 40%, rgba(220, 220, 220,0.02) 100%),linear-gradient(90deg, rgb(255,255,255),rgb(255,255,255));}
 
 .info{
@@ -98,30 +125,5 @@ body{
 }
 
 </style>
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-
-function verifDate(){
-
-    $.ajax({
-
-        success: function () {
-
-            //if( == "#calendrier".val()){
-            //    "#bouton".prop( "disabled", true );
-            //}
-        },
-
-        error: function() {
-            console.log("ERREUR");
-        }
-
-    });
-
-};
-</script>
 
 </html>
