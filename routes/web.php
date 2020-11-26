@@ -36,6 +36,8 @@ Route::get('/', function () {
 
 
 Route::get('/gestion-voiture', [ManageCar::class, 'initialize']);
+Route::post('/gestion-voiture', [EditCar::class, 'updateCar']);
+
 
 Route::get('/modification-voiture', [EditCar::class, 'initialize']);
 
