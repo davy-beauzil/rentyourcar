@@ -11,7 +11,7 @@ class CreateCar extends Controller
         return view('creation-voiture', ['button' => 'Créer', 'action' => '/creation-voiture']);
     }
 
-    public function createNewModel(Request $request){
+    public function createModele(Request $request){
         $modele = new Modele();
         $modele->nom = $request->input('nom');
         $modele->tarifKmSupplementaire = $request->input('tarifKmSupplementaire');
@@ -25,8 +25,37 @@ class CreateCar extends Controller
         $image->move(public_path('img'), $filename);
         $modele->pathImage = $filename;
 
-        $modele->save();
+        $saved = $modele->save();
 
-        return view('creation-voiture', ['button' => 'Créer', 'action' => '/creation-voiture']);
+        if(!$saved){
+            return view('gestion-vehicule', ['message' => 'Une erreur s\'est produite pendant l\'enregistrement du modèle de véhicule', 'classMessage' => 'alert-danger', 'function' => 'showMessage()']);
+        }else{
+            return view('gestion-vehicule', ['message' => 'Le modèle de voiture a bien été enregistré', 'classMessage' => 'alert-success', 'function' => 'showMessage()']);
+        }
+
+    }
+
+    public function updateModele(Request $request){
+
+        $id = $request->id;
+        $nom = $request->input('nom');
+        $tarifKmSupplementaire = $request->input('tarifKmSupplementaire');
+        $nbPlaces = $request->input('nbPlaces');
+        $vitesseMax = $request->input('vitesseMax');
+        $description = $request->input('description');
+
+        $image = $request->file('photo');
+        $extension = $image->extension();
+        $filename = time() . '.' . $extension;
+        $image->move(public_path('img'), $filename);
+        $modele->pathImage = $filename;
+
+        $modele = Modele::find($id)
+            ->update(['nom' => $nom, 
+            'tarifKmSupplementaire' => $tarifKmSupplementaire, 
+            'nbPlaces' => $nbPlaces, 'vitesseMax' => $vitesseMax, 
+            'description' => $description]);
+
+        return view('creation-voiture', ['button' => 'Créer', 'action' => '/creation-voiture', 'message' => 'Modèle correctement mis à jour']);
     }
 }

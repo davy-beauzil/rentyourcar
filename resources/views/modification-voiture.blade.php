@@ -14,24 +14,24 @@
     
     <div class="container mt-5">
         <div class="row d-flex flex-row align-items-center">
-            <form class="d-flex flex-column col-6 form-car" action="{{ $action }}" method="post">
+            <form class="d-flex flex-column col-6 form-car" action="/modifier-un-modele" method="POST">
                 @csrf
+                <input type="text" name="modele-id" class="inputModeleId" value="{{ $modele->id }}">
                 <label class="pl-3 mb-0 label-infos" for="nom">Nom de la voiture</label>
-                <input class="mb-3 input-infos p-1" type="text" name="nom">
+                <input class="mb-3 input-infos p-1" type="text" name="nom" value="{{ $modele->nom }}">
                 <label class="pl-3 mb-0 label-infos" for="tarifKmSupplementaire">Tarif du km supplémentaire</label>
-                <input class="mb-3 input-infos p-1" type="number" name="tarifKmSupplementaire">
+                <input class="mb-3 input-infos p-1" type="number" name="tarifKmSupplementaire" value="{{ $modele->tarifKmSupplementaire }}">
                 <label class="pl-3 mb-0 label-infos" for="nbPlaces">Nombre de places</label>
-                <input class="mb-3 input-infos p-1" type="number" name="nbPlaces">
+                <input class="mb-3 input-infos p-1" type="number" name="nbPlaces" value="{{ $modele->nbPlaces }}">
                 <label class="pl-3 mb-0 label-infos" for="vitesseMax">Vitesse maximale</label>
-                <input class="mb-3 input-infos p-1" type="number" name="vitesseMax">
+                <input class="mb-3 input-infos p-1" type="number" name="vitesseMax" value="{{ $modele->vitesseMax }}">
                 <label class="pl-3 mb-0 label-infos" for="description">Description</label>
-                <textarea class="mb-3 input-infos p-1" name="description" id="textarea-desc"></textarea>
-
+                <textarea class="mb-3 input-infos p-1" name="description" id="textarea-desc"> {{ $modele->description }}</textarea>
                 <input class="edit-button my-5 col-3 btn-success p-1" type="submit" value="{{ $button }}">
             </form>
 
             <div class="apercu col-6">
-                <img class="image-voiture col-12" src="https://via.placeholder.com/200x100" alt="image de voiture">
+                <img class="image-voiture col-12" src="../../img/{{$modele->pathImage}}" alt="image de voiture">
             </div>
         </div>
 
@@ -54,6 +54,10 @@
         .form-car{
             margin-bottom: 100px;
             display: block;
+        }
+        .inputModeleId{
+            visibility: hidden;
+            height: 0;
         }
     </style>
 
