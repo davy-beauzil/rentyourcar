@@ -12,8 +12,8 @@
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="crud.php" id="navbardrop" data-toggle="dropdown">Location</a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="reservation">Reservation</a>
-						<a class="dropdown-item" href="historique">Historique</a>
+						<a class="dropdown-item" href="../reservation">Reservation</a>
+						<a class="dropdown-item" href="../historique">Historique</a>
 					</div>
 				</li>
 				<li><a class="nav-link" href="../creation-voiture">CreationVehicule</a></li>
