@@ -57,10 +57,11 @@ Route::get('/contact', function () {
 });
 
 
-use App\Http\Controllers\LocationController;
-Route::get('/ficheVehicule', function () {
-    return view('ficheVehicule');
-});
+use App\Http\Controllers\LocationVehicule;
+Route::get('ficheVehicule/{n}', [LocationVehicule::class, 'recup'])->where('n', '[0-9]+');
+
+use App\Http\Controllers\RechercheLoc;
+Route::get('rechercheDate/{n}/{date}', [RechercheLoc::class, 'initialize'])->where('n', '[0-9]+')->where('date');
 
 
 Route::get('/', function () {
@@ -75,6 +76,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+use App\Http\Controllers\HomeController;
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 

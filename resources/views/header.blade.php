@@ -7,17 +7,18 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
 		<ul class="nav navbar-nav ml-auto">
-				<li><a class="nav-link" href="accueil.php">Accueil</a></li>
-				<li><a class="nav-link" href="vehicule.php">Vehicule</a></li>
+				<li><a class="nav-link" href="../accueil">Accueil</a></li>
+				<li><a class="nav-link" href="../vehicule">Vehicule</a></li>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="crud.php" id="navbardrop" data-toggle="dropdown">Location</a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="reservation.php">Reservation</a>
-						<a class="dropdown-item" href="historique.php">Historique</a>
+						<a class="dropdown-item" href="../reservation">Reservation</a>
+						<a class="dropdown-item" href="../historique">Historique</a>
 					</div>
 				</li>
-				<li><a class="nav-link" href="contact.php">Contact</a></li>
-				<li><button class="btn btn-danger navbar-btn">Connexion</button></li>
+				<li><a class="nav-link" href="../creation-voiture">CreationVehicule</a></li>
+				<li><a class="nav-link" href="../contact">Contact</a></li>
+				<li><button class="btn btn-danger navbar-btn" href="auth/layouts/app">Connexion</button></li>
 		</ul>
 	</nav>
 

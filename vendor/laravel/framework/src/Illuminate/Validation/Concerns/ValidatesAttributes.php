@@ -1036,7 +1036,7 @@ trait ValidatesAttributes
      */
     public function validateImage($attribute, $value)
     {
-        return $this->validateMimes($attribute, $value, ['jpeg', 'png', 'gif', 'bmp', 'svg', 'webp']);
+        return $this->validateMimes($attribute, $value, ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'svg', 'webp']);
     }
 
     /**
@@ -1267,7 +1267,11 @@ trait ValidatesAttributes
             return false;
         }
 
-        return fmod($value, $parameters[0]) === 0.0;
+        if ((float) $parameters[0] === 0.0) {
+            return false;
+        }
+
+        return bcmod($value, $parameters[0], 16) === '0.0000000000000000';
     }
 
     /**
@@ -1871,7 +1875,7 @@ trait ValidatesAttributes
      * @param  array  $parameters
      * @return array
      */
-    protected function parseNamedParameters($parameters)
+    public function parseNamedParameters($parameters)
     {
         return array_reduce($parameters, function ($result, $item) {
             [$key, $value] = array_pad(explode('=', $item, 2), 2, null);
