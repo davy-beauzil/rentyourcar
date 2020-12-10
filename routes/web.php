@@ -5,45 +5,44 @@ use App\Http\Controllers\CreateCar;
 use App\Http\Controllers\EditCar;
 use App\Http\Controllers\ManageCar;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-
-Route::get('/', [WelcomeController::class, 'index']);
-Route::get('/article{n}', [ArticleController::class, 'show'])->where('n', '[0-9]+');
-Route::get('/fournisseur{n}', [FournisseurController::class, 'show'])->where('n', '[0-9]+');
-
-Route::get('/create-fournisseur', [CreateFournisseurController::class, 'form']);
-Route::post('/create-fournisseur', function(){
-    $fournisseur = new Fournisseur;
-    $fournisseur->nom = request('nom');
-    $fournisseur->adresse_id = request('id');
-    $fournisseur->save();
-    return view('form-create-fournisseur');
-});
-Route::get('/fournisseur-start-with-{n}', [FournisseurController::class, 'startWith']);
-*/
-
 Route::get('/', function () {
     return view('accueil');
 });
 
 Route::get('/vehicule', [ListeCar::class, 'initialize']);
 
+/* Gestion voiture */
+// page de choix
 Route::get('/gestion-voiture', [ManageCar::class, 'initialize']);
-Route::post('/gestion-voiture', [EditCar::class, 'updateCar']);
+
+    // création modele
+    Route::post('/findModele', [EditCar::class, 'findModele']);
+    Route::post('/findVehicule', [EditCar::class, 'findVehicule']);
+    Route::post('/findAllModeles', [EditCar::class, 'findAllModeles']);
+    Route::post('/findAllVehicules', [EditCar::class, 'findAllVehicules']);
+
+    Route::post('/create-modele', [CreateCar::class, 'createModele']);
+    Route::post('/update-modele', [EditCar::class, 'updateModele']);
+    Route::post('/create-vehicule', [CreateCar::class, 'createVehicule']);
+    Route::post('/update-vehicule', [EditCar::class, 'updateVehicule']);
+/*
+    Route::post('create-modele', [CreateCar::class, 'createModele']);
+    Route::post('update-modele', [EditCar::class, 'updateModele']);
+    Route::post('create-vehicule', [CreateCar::class, 'createVehicule']);
+    Route::post('update-vehicule', [EditCar::class, 'updateVehicule']);
+*/
+    Route::get('/test/{id}', [EditCar::class, 'test']);
+
+    // création vehicule
+    // modification modele
 
 
-Route::get('/modification-voiture', [EditCar::class, 'initialize']);
+Route::post('/gestion-voiture', [EditCar::class, 'updateModele']);
 
-Route::get('/creation-voiture', [CreateCar::class, 'initialize']);
-Route::post('/creation-voiture', [CreateCar::class, 'createNewModel']);
+
+
+
+
 
 
 Route::get('/accueil', function () {
@@ -78,6 +77,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+use App\Http\Controllers\HomeController;
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
