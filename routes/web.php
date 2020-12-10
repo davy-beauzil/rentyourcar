@@ -34,6 +34,7 @@ Route::get('/', function () {
     return view('accueil');
 });
 
+Route::get('/vehicule', [ListeCar::class, 'initialize']);
 
 Route::get('/gestion-voiture', [ManageCar::class, 'initialize']);
 Route::post('/gestion-voiture', [EditCar::class, 'updateCar']);

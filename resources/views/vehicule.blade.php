@@ -23,44 +23,21 @@
             <br>
         </div>
         
-        <?php
-        $servername = "127.0.0.1";
-        $username = "root";
-        $password = "";
-        $dbname = "rentyourcar";
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        
-        if ($conn->connect_error) {
-            die("Impossible de se connecter à la base de données : " . $conn->connect_error);
-        }
-        $sql = "SELECT * FROM modele";
-        $result = $conn->query($sql);
 
-        echo'<div class="container" id="vehicule">
-        <div class="row mb-5">';
-        
-        if ($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
-                echo '<div class="col-md-3">
-                    <a class="nav-link" href="ficheVehicule/'.$row["id"].'">
+        <div class="container" id="vehicule" action="" method="POST">
+            <div class="row mb-5">';
+                <div class="col-md-3">
+                foreach($listeModele as $modele)
+                    <a class="nav-link" href="ficheVehicule/{{$modele->id}}">
                         <div class="card">
-                            <img src="../../img/'.$row["pathImage"].'"></img>
+                            <img src="../../img/{{$modele->pathImage}}"></img>
                             <div class="card-body text-center">
-                                <h5 class="card-title">'.$row["nom"].'</h5>
+                                <h5 class="card-title">{{$modele->nom}}</h5>
                             </div>
                         </div>
                     </a>
-                </div>';
-            }
-        } else {
-         echo "Aucun voiture n'existe dans notre catalogue";
-        }
-
-        echo '</div> </div>';
-        
-        $conn->close();
-        ?>
-
+                @endforeach    
+                </div>
         <!-- Afficher une fois filtrer -->    
         <p id="demo"></p>
         <br>
