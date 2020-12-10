@@ -14,11 +14,13 @@ class RechercheLoc extends Controller
         $vehicules = Vehicule::where('modele_id', '=', $n)->get();
 
 
-        $location = Location::where('dateLocation', '=', $date)->get();
+        $location = DB::table('location')
+            ->select('dateLocation', $vehicules)
+            ->where('dateLocation','=',$date)
+            ->get();
 
 
-
-        return view('rechercheDate')->with('reservation', $location, 'vehicules', $vehicules);
+        return view('rechercheDate')->with('reservation', $location);
 
     }
 }
