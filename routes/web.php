@@ -43,8 +43,6 @@ Route::post('/gestion-voiture', [EditCar::class, 'updateModele']);
 
 
 
-
-
 Route::get('/accueil', function () {
     return view('accueil');
 });
@@ -52,6 +50,7 @@ Route::get('/accueil', function () {
 Route::get('/vehicule', function () {
     return view('vehicule');
 });
+
 
 Route::get('/contact', function () {
     return view('contact');
