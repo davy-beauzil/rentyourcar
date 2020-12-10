@@ -8,11 +8,8 @@
         <script src="javascript.js"></script>
         <link rel="stylesheet" href="style.css">
         <meta charset="utf-8" />
-<<<<<<< resources/views/vehicule.blade.php
-=======
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
->>>>>>> resources/views/vehicule.blade.php
         <title>RentYourCarhubert</title>
     </head>
 
@@ -58,11 +55,7 @@
                 </div>';
             }
         } else {
-<<<<<<< resources/views/vehicule.blade.php
          echo "Aucun voiture n'existe dans notre catalogue";
-=======
-         echo "0 resultat";;
->>>>>>> resources/views/vehicule.blade.php
         }
 
         echo '</div> </div>';
