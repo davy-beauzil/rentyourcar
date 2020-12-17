@@ -13,7 +13,7 @@
     <!-- Afficher Header -->
     @include('header') 
 
-    <body onload="listeVehicule()"> 
+    <body> 
     <!-- Liste Véhicule -->
         <div class="container">
             <br>
@@ -63,8 +63,6 @@
            }  
       });  
 
-
-function listeVehicule(conteneur, choix){
     
     $.ajax({
         headers: {
@@ -75,21 +73,19 @@ function listeVehicule(conteneur, choix){
         dataType: "json",
     }).done(function(response){
         for(var i = 0 ; i < response.length ; i++){
-            $(conteneur).append('<a class="nav-link" href="ficheVehicule/'+ response[i]['id']'>'
+            $('p').append('<a class="nav-link" href="ficheVehicule/'+response[i]['id']+'>'
             +'<div class="card">'
             +'<img src="../../img/'+ response[i]['pathImage'] +'"></img>'
             +'<div class="card-body text-center">'
             +'<h5 class="card-title">'+ response[i]['nom'] +'</h5>'  
             +'</div>'
-            +'</div>'
+            +'</div>')
         }
-        }, 100)
-        return response;
-    }).fail(function(error){
-        console.log(JSON.stringify(error))
-    })
-    window.onload = listeVehicule();
-}
+        }).fail(function(error){
+
+            console.log(error)
+        })
+
 
 var jeton = 0;
 var parent;
