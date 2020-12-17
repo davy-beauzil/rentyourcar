@@ -13,7 +13,7 @@
     <!-- Afficher Header -->
     @include('header') 
 
-    <body>
+    <body onload="listeVehicule()"> 
     <!-- Liste Véhicule -->
         <div class="container">
             <br>
@@ -21,44 +21,6 @@
             <input type="text" name="search" id="search" class="form-control" placeholder="Recherche ..." />
             <br>
         </div>
-        
-        <?php
-        $servername = "127.0.0.1";
-        $username = "root";
-        $password = "root";
-        $dbname = "rentyourcar";
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        
-        if ($conn->connect_error) {
-            die("Impossible de se connecter à la base de données : " . $conn->connect_error);
-        }
-        $sql = "SELECT * FROM modele";
-        $result = $conn->query($sql);
-
-        echo'<div class="container" id="vehicule">
-        <div class="row mb-5">';
-        
-        if ($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
-                echo '<div id="'.$row["id"].'" onclick="affiche(this)" class="col-md-3">
-                    
-                        <div class="card">
-                            <img src="../../img/'.$row["pathImage"].'"></img>
-                            <div class="card-body text-center">
-                                <h5 class="card-title">'.$row["nom"].'</h5>
-                            </div>
-                        </div>
-                    
-                </div>';
-            }
-        } else {
-         echo "Aucun voiture n'existe dans notre catalogue";
-        }
-
-        echo '</div> </div>';
-        
-        $conn->close();
-        ?>
 
         <!-- Afficher une fois filtrer -->    
         <p id="demo"></p>
@@ -101,10 +63,39 @@
            }  
       });  
 
+
+function listeVehicule(conteneur, choix){
+    
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: "/listeVehicule",
+        type: "POST",
+        dataType: "json",
+    }).done(function(response){
+        for(var i = 0 ; i < response.length ; i++){
+            $(conteneur).append('<a class="nav-link" href="ficheVehicule/'+ response[i]['id']'>'
+            +'<div class="card">'
+            +'<img src="../../img/'+ response[i]['pathImage'] +'"></img>'
+            +'<div class="card-body text-center">'
+            +'<h5 class="card-title">'+ response[i]['nom'] +'</h5>'  
+            +'</div>'
+            +'</div>'
+        }
+        }, 100)
+        return response;
+    }).fail(function(error){
+        console.log(JSON.stringify(error))
+    })
+    window.onload = listeVehicule();
+}
+
 var jeton = 0;
 var parent;
 var divPrincipale;
 var id = 0;
+
 
 function affiche(elem){
 
