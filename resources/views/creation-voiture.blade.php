@@ -72,35 +72,6 @@
     }
 </style>
 
-    <style>
-        body{
-            background-image: linear-gradient(339deg, rgba(47, 47, 47,0.02) 0%, rgba(47, 47, 47,0.02) 42%,transparent 42%, transparent 99%,rgba(17, 17, 17,0.02) 99%, rgba(17, 17, 17,0.02) 100%),linear-gradient(257deg, rgba(65, 65, 65,0.02) 0%, rgba(65, 65, 65,0.02) 11%,transparent 11%, transparent 92%,rgba(53, 53, 53,0.02) 92%, rgba(53, 53, 53,0.02) 100%),linear-gradient(191deg, rgba(5, 5, 5,0.02) 0%, rgba(5, 5, 5,0.02) 1%,transparent 1%, transparent 45%,rgba(19, 19, 19,0.02) 45%, rgba(19, 19, 19,0.02) 100%),linear-gradient(29deg, rgba(28, 28, 28,0.02) 0%, rgba(28, 28, 28,0.02) 33%,transparent 33%, transparent 40%,rgba(220, 220, 220,0.02) 40%, rgba(220, 220, 220,0.02) 100%),linear-gradient(90deg, rgb(255,255,255),rgb(255,255,255));
-            min-height: 100vh;
-            width: 100%;
-        }
-        .input-infos{
-            color: #555
-        }
-        #textarea-desc{
-            max-height:300px;
-            min-height: 150px;
-        }
-        .edit-button{
-            border-radius:5px;
-            border: none;
-            margin: 20px 0 100px 0;
-        }
-        .apercu{
-            border: 1px solid #333;
-            padding: 0;
-            margin: 20px auto;
-        }
-        .image-voiture{
-            padding: 0;
-            margin: 0;
-        }
-    </style>
-
 <!-- JS -->
 <script>
     var loadFile = function(event) {
