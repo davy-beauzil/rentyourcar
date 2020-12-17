@@ -12,7 +12,7 @@
     <!-- Afficher Header -->
     @include('header') 
 
-    <body onload="afficheListe();">
+    <body onload="listeVehicule()"> 
     <!-- Liste Véhicule -->
         <div class="container">
             <br>
@@ -20,20 +20,7 @@
             <input type="text" name="search" id="search" class="form-control" placeholder="Recherche ..." />
             <br>
         </div>
-        
 
-        <div class="container" id="vehicule" action="" method="POST">
-            <div class="row mb-5">';
-                <div class="col-md-3">
-                    <a class="nav-link" href="ficheVehicule/">
-                        <div class="card">
-                            <img src="../../img/"></img>
-                            <div class="card-body text-center">
-                                <h5 class="card-title"></h5>
-                            </div>
-                        </div>
-                    </a>    
-                </div>
         <!-- Afficher une fois filtrer -->    
         <p id="demo"></p>
         <br>
@@ -73,42 +60,31 @@
       });  
 
 
-function findModele(id){
-
+function listeVehicule(conteneur, choix){
+    
     $.ajax({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        url: "/findModele",
+        url: "/listeVehicule",
         type: "POST",
-        data: {id: id},
         dataType: "json",
-
     }).done(function(response){
-
-        console.log(response[0]['nom']);
-
+        for(var i = 0 ; i < response.length ; i++){
+            $(conteneur).append('<a class="nav-link" href="ficheVehicule/'+ response[i]['id']'>'
+            +'<div class="card">'
+            +'<img src="../../img/'+ response[i]['pathImage'] +'"></img>'
+            +'<div class="card-body text-center">'
+            +'<h5 class="card-title">'+ response[i]['nom'] +'</h5>'  
+            +'</div>'
+            +'</div>'
+        }
+        }, 100)
+        return response;
     }).fail(function(error){
-
-        console.log(error)
+        console.log(JSON.stringify(error))
     })
-    
-}
-
-var jeton = 0;
-var parent;
-var divPrincipale;
-var id = 0;
-
-function liste(){
-
-divImage = document.createElement('div');
-
-
-divTitre = document.createElement('div');
-
-console.log();
-
+    window.onload = listeVehicule();
 }
 
 function affiche(elem){

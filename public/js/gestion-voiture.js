@@ -305,21 +305,3 @@ function showMessage(){
         message.style.display = 'none';
     }, 5000)
 }
-
-function afficheListe(){
-    $.ajax({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        url: "/vehicule",
-        type: "POST",
-        data: {id: id},
-        dataType: "json",
-    }).done(function(response){
-        $('.inputId').val(response[0]['id']);
-        $('.image-voiture').attr('src', '../../img/' + response[0]['pathImage']).css('visibility', 'visible');
-        $('.nom').val(response[0]['nom']);
-    }).fail(function(error){
-        console.log(JSON.stringify(error))
-    })
-}
