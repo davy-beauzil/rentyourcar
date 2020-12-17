@@ -9,8 +9,8 @@ function selectChoix(){
         formToDelete.remove();
     }
     var form = document.querySelector('.form-gestion');
-    if(form){
-        form.remove();
+    if(form[1]){
+        form[1].remove();
     }
     $('.image-voiture').css('visibility', 'hidden');
 
@@ -65,6 +65,11 @@ function selectChoix(){
 
 function generateForm(choix){
 
+    var csrf = document.createElement('input');
+    csrf.name = '_token';
+    csrf.type = 'hidden';
+    csrf.value = $('meta[name="csrf-token"]').attr('content');
+
     var imageVoiture = document.querySelector('.image-voiture');
     var infosModele = ['Nom', 'Tarif du kilomètre supplémentaire', 'Nombre de places', 'Vitesse maximale', 'Description'];
     var nameModele = ['nom', 'tarifKmSupplementaire', 'nbPlaces', 'vitesseMax', 'description'];
@@ -75,12 +80,7 @@ function generateForm(choix){
     form.className = 'form-gestion form-' + choix;
     form.setAttribute('action', choix);
     form.setAttribute('method', 'post');
-    
-    var csrf = document.createElement('input');
-    csrf.name = "_token";
-    csrf.setAttribute('value', '{{ csrf_token() }}');
-    csrf.style.display = "none";
-    form.append(csrf);
+    form.append(csrf)
 
     var title = document.createElement('h3');
     title.style.margin = '20px 0 10px 0';
@@ -89,7 +89,7 @@ function generateForm(choix){
     imageInput.name = 'photo';
     imageInput.placeholder = "choisir une photo"
     imageInput.style.margin = "0 0 10px 0";
-    imageInput.className = "form-control-file"
+    imageInput.className = "form-control-file image"
     imageInput.setAttribute('accept', 'image/*');
     imageInput.addEventListener('change', function(event){
         var image = imageInput.files[0];
@@ -186,6 +186,8 @@ function generateForm(choix){
             title.textContent = 'Modifier un véhicule existant';
             button.textContent = 'Modifier';
         }
+        form.append(button)
+        div.append(form)
     }
 }
 
@@ -214,6 +216,7 @@ function findModele(id){
 }
 
 function findAllModeles(conteneur, choix){
+
     
     $.ajax({
         headers: {
@@ -226,6 +229,7 @@ function findAllModeles(conteneur, choix){
         for(var i = 0 ; i < response.length ; i++){
             $(conteneur).append('<option value="'+ response[i]['nom'] +'" modele-id="'+ response[i]['id'] +'" >'+ response[i]['nom'] + '</option>');
         }
+
         setTimeout(function(){
             if(document.querySelector('.form-update-vehicule')){
                 const selectChoix = document.querySelector('.select-update-vehicule');
@@ -245,9 +249,8 @@ function findAllModeles(conteneur, choix){
                         }
                     }
                 }
-    
             }
-        }, 100)
+        }, 500)
         
         return response;
     }).fail(function(error){
@@ -290,6 +293,30 @@ function findAllVehicules(conteneur){
         for(var i = 0 ; i < response.length ; i++){
             $(conteneur).append('<option vehicule-id="'+ response[i]['id'] +'" modele-id="'+ response[i]['modele_id'] +'">' + response[i]['nomModele'] + ' : ' + response[i]['id'] + '</option>');
         }
+        return response;
+    }).fail(function(error){
+        console.log(JSON.stringify(error))
+    })
+}
+
+function createModele(){
+    
+    console.log('je suis là')
+
+    var nom = $('.nom').text();
+    var tarifKmSupplementaire = $('.tarifKmSupplementaire').text();
+    var nbPlaces = $('.nbPlaces').text();
+    var vitesseMax = $('.vitesseMax').text();
+    var description = $('.description').text();
+    var image = $('.image').files[0];
+    var fd = new FormData(image);
+
+    $.ajax({
+        url: "/create-modele",
+        type: "POST",
+        data: {nom: nom, tarifKmSupplementaire: tarifKmSupplementaire, nbPlaces: nbPlaces, vitesseMax: vitesseMax, description: description, image: fd},
+        dataType: "json",
+    }).done(function(response){
         return response;
     }).fail(function(error){
         console.log(JSON.stringify(error))

@@ -82,12 +82,4 @@ class EditCar extends Controller
         return response()->json($vehicules);
 
     }
-
-    public function test(Request $request){
-        $id = $request->id;
-        $vehicule = Vehicule::where('id', '=', $id)->get();
-        $date = Vehicule::select('dateAchat')->where('id', '=', $id)->get();
-        $dateFormated = Carbon::parse($date[0]['dateAchat'])->format('Y-m-d\TH:i');
-        echo($dateFormated);
-    }
 }
