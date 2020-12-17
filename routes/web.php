@@ -9,6 +9,7 @@ Route::get('/', function () {
     return view('accueil');
 });
 
+Route::get('/vehicule', [ListeCar::class, 'initialize']);
 
 /* Gestion voiture */
 // page de choix
