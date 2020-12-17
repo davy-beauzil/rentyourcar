@@ -2,6 +2,7 @@
 <html lang="fr">
     <head>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
         <meta charset="utf-8" />
         <meta name="csrf-token" with content="{{ csrf_token() }}">
 
@@ -71,6 +72,9 @@
 
 <!-- JS Recherche Vehicule-->  
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <script>  
       $(document).ready(function(){  
            $('#search').keyup(function(){  
@@ -96,29 +100,6 @@
                 });  
            }  
       });  
-
-
-function findModele(id){
-
-    $.ajax({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        url: "/findModele",
-        type: "POST",
-        data: {id: id},
-        dataType: "json",
-
-    }).done(function(response){
-
-        console.log(response[0]['nom']);
-
-    }).fail(function(error){
-
-        console.log(error)
-    })
-    
-}
 
 var jeton = 0;
 var parent;
@@ -160,9 +141,51 @@ function affiche(elem){
 
     divInfo = document.createElement('div');
     divInfo.style.width = "50%";
-    divInfo.style.height = "80%";
-    divInfo.style.margin = "5% 1% 5% 0%";
+    divInfo.style.margin = "2% 1% 5% 0%";
     divInfo.style.float = "right";
+    divInfo.id = "info";
+
+
+    divForm = document.createElement('form');
+    divForm.id = "formulaire";
+    divInfo.append(divForm);
+
+    for (var i=0; i<11; i++) {
+
+        divBoucle = document.createElement('div');
+        divBoucle.id = "text"+i;
+        divBoucle.style.width = "50%";
+        divBoucle.style.height = "5%";
+        divBoucle.style.margin = "4% 0% 0% 40%";
+        divForm.append(divBoucle);
+
+        if(i % 2 == 0){
+            divBoucle.style.fontFamily = "bold";
+
+        }else{
+
+            divBoucle.style.margin = "0% 0% 0% 40%";
+        }
+    }
+
+    divDate = document.createElement('input');
+    divDate.id = "date";
+    divDate.style.width = "50%";
+    divDate.style.height = "5%";
+    divDate.style.margin = "0% 0% 0% 40%";
+
+    divForm.append(divDate);
+
+
+    var valider = document.createElement("input");
+    valider.id = "reserver";
+    valider.style.width = "20%";
+    valider.style.height = "5%";
+    valider.style.float = "right";
+    valider.style.margin = "10% 0% 0% 40%";
+    valider.type = "submit";
+    valider.value = "Reserver";
+    divForm.append(valider);
 
     divImage.append(img);
     divPrincipale.append(divInfo);
@@ -181,6 +204,17 @@ function affiche(elem){
 
     }).done(function(response){
 
+        $("#text0").text("Modele :");
+        $("#text1").text(response[0]['nom']);
+        $("#text2").text("Vitesse Max :");
+        $("#text3").text(response[0]['vitesseMax']+"km/h");
+        $("#text4").text("Tarif/km Supplémentaire :");
+        $("#text5").text(response[0]['tarifKmSupplementaire']+"€");
+        $("#text6").text("Description :");
+        $("#text7").text(response[0]['description']);
+        $("#text8").text("Sièges :");
+        $("#text9").text(response[0]['nbPlaces']);
+        $("#text10").text("Selectionner une date :");
 
         $('#image').attr('src', '../../img/'+response[0]['pathImage']);
 
@@ -189,8 +223,7 @@ function affiche(elem){
         console.log(error)
     })
     
-
-
+    $( "#date" ).datepicker();
     $("#fermer").text("X");
     $( "#fermer" ).click(function() {
         divPrincipale.remove();
