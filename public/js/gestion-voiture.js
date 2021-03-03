@@ -1,18 +1,6 @@
 function selectChoix(){
-
     var infosModele = ['Nom', 'Tarif du kilomètre supplémentaire', 'Nombre de places', 'Vitesse maximale', 'Description'];
     var nameModele = ['nom', 'tarifKmSupplementaire', 'nbPlaces', 'vitesseMax', 'description'];
-
-    // je réinitialise les éléments de la page
-    var formToDelete = $('.div-form');
-    if(formToDelete){
-        formToDelete.remove();
-    }
-    var form = document.querySelector('.form-gestion');
-    if(form){
-        form.remove();
-    }
-    $('.image-voiture').css('visibility', 'hidden');
 
     // je mémorise le choix
     var choix = event.target.value;
@@ -20,6 +8,19 @@ function selectChoix(){
     var formChoix = document.querySelector('.form-choix');
     var divForm = document.createElement('div');
     divForm.classList.add('div-form');
+
+    // je réinitialise les éléments de la page
+    var formToDelete = $('.div-form');
+    if(formToDelete){
+        formToDelete.remove();
+    }
+    var form = document.querySelector('.form-gestion');
+
+    if(form){
+        form.remove();
+    }
+
+    $('.image-voiture').css('visibility', 'hidden');
 
     // si c'est pour une modification, je demande l'id de la chose à modifier
     if(choix == 'update-modele' || choix == 'update-vehicule'){
@@ -61,14 +62,10 @@ function selectChoix(){
         formChoix.append(divForm);
         generateForm(choix);
     }
+
 }
 
 function generateForm(choix){
-
-    var csrf = document.createElement('input');
-    csrf.name = '_token';
-    csrf.type = 'hidden';
-    csrf.value = $('meta[name="csrf-token"]').attr('content');
 
     var imageVoiture = document.querySelector('.image-voiture');
     var infosModele = ['Nom', 'Tarif du kilomètre supplémentaire', 'Nombre de places', 'Vitesse maximale', 'Description'];
@@ -83,6 +80,7 @@ function generateForm(choix){
     form.setAttribute('enctype', 'multipart/form-data');
     form.append(csrf)
 
+
     var title = document.createElement('h3');
     title.style.margin = '20px 0 10px 0';
     var imageInput = document.createElement('input');
@@ -90,7 +88,7 @@ function generateForm(choix){
     imageInput.name = 'photo';
     imageInput.placeholder = "choisir une photo"
     imageInput.style.margin = "0 0 10px 0";
-    imageInput.className = "form-control-file image"
+    imageInput.className = "form-control-file"
     imageInput.setAttribute('accept', 'image/*');
     imageInput.addEventListener('change', function(event){
         var image = imageInput.files[0];
@@ -102,7 +100,7 @@ function generateForm(choix){
             imageVoiture.style.visibility = 'visible';
         }
         reader.readAsDataURL(image)
-        
+
     })
     var labelImageInput = document.createElement('label');
     labelImageInput.setAttribute('for', 'photo');
@@ -135,8 +133,8 @@ function generateForm(choix){
             var label = document.createElement('label');
             label.style.margin = '0';
             label.textContent = infosModele[i];
-            label.setAttribute('for', nameModele[i]); 
-            
+            label.setAttribute('for', nameModele[i]);
+
             form.append(label);
             form.append(input);
         }
@@ -187,8 +185,6 @@ function generateForm(choix){
             title.textContent = 'Modifier un véhicule existant';
             button.textContent = 'Modifier';
         }
-        form.append(button)
-        div.append(form)
     }
 }
 
@@ -213,12 +209,11 @@ function findModele(id){
     }).fail(function(error){
         console.log(JSON.stringify(error))
     })
-    
+
 }
 
 function findAllModeles(conteneur, choix){
 
-    
     $.ajax({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -230,17 +225,16 @@ function findAllModeles(conteneur, choix){
         for(var i = 0 ; i < response.length ; i++){
             $(conteneur).append('<option value="'+ response[i]['nom'] +'" modele-id="'+ response[i]['id'] +'" >'+ response[i]['nom'] + '</option>');
         }
-
         setTimeout(function(){
             if(document.querySelector('.form-update-vehicule')){
                 const selectChoix = document.querySelector('.select-update-vehicule');
                 const choix = selectChoix[selectChoix.selectedIndex].getAttribute('modele-id');
-        
+
                 const selectModele = document.querySelector('.modele');
                 if(selectModele.hasChildNodes){
-        
+
                     const optionsModele = selectModele.childNodes;
-        
+
                     for(var i = 0 ; i < optionsModele.length ; i++){
                         var modeleId = optionsModele[i].getAttribute('modele-id');
                         if(choix == modeleId){
@@ -250,15 +244,17 @@ function findAllModeles(conteneur, choix){
                         }
                     }
                 }
+
             }
         }, 500)
-        
+
+
         return response;
     }).fail(function(error){
         console.log(JSON.stringify(error))
     })
 
-    
+
 
 }
 
@@ -279,7 +275,7 @@ function findVehicule(id){
     }).fail(function(error){
         console.log(JSON.stringify(error))
     })
-    
+
 }
 
 function findAllVehicules(conteneur){
@@ -300,8 +296,9 @@ function findAllVehicules(conteneur){
     })
 }
 
+
 /*function createModele(){
-    
+
     var nom = $('.nom').text();
     var tarifKmSupplementaire = $('.tarifKmSupplementaire').text();
     var nbPlaces = $('.nbPlaces').text();
@@ -323,6 +320,7 @@ function findAllVehicules(conteneur){
         console.log(JSON.stringify(error))
     })
 }*/
+
 
 
 function showMessage(){

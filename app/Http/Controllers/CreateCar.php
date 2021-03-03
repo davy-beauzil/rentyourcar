@@ -21,6 +21,7 @@ class CreateCar extends Controller
         $modele->vitesseMax = $request->input('vitesseMax');
         $modele->description = $request->input('description');
 
+
         if($request->hasFile('photo')){
             $image = $request->file('photo');
             $extension = $image->extension();
@@ -29,6 +30,7 @@ class CreateCar extends Controller
             $modele->pathImage = $filename;
             $saved = $modele->save();
         }
+
 
         /*
         if(!$saved){
@@ -55,11 +57,12 @@ class CreateCar extends Controller
         $pathImage = $filename;
 
         $modele = Modele::find($id)
-            ->update(['nom' => $nom, 
-            'tarifKmSupplementaire' => $tarifKmSupplementaire, 
-            'nbPlaces' => $nbPlaces, 'vitesseMax' => $vitesseMax, 
+
+            ->update(['nom' => $nom,
+            'tarifKmSupplementaire' => $tarifKmSupplementaire,
+            'nbPlaces' => $nbPlaces, 'vitesseMax' => $vitesseMax,
             'description' => $description, 'pathImage' => $pathImage]);
 
-        return view('creation-voiture', ['button' => 'Créer', 'action' => '/creation-voiture', 'message' => 'Modèle correctement mis à jour']);
+        return view('creation-voiture', ['button' => 'Créer', 's' => '/creation-voiture', 'message' => 'Modèle correctement mis à jour']);
     }
 }
