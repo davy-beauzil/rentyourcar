@@ -18,7 +18,7 @@
 				</li>
 				<li><a class="nav-link" href="../creation-voiture">CreationVehicule</a></li>
 				<li><a class="nav-link" href="../contact">Contact</a></li>
-				<li><button class="btn btn-danger navbar-btn" href="auth/layouts/app">Connexion</button></li>
+				<li><a class="btn btn-danger navbar-btn" href="../login">Connexion</a></li>
 		</ul>
 	</nav>
 

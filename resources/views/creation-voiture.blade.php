@@ -11,7 +11,7 @@
 
         <!-- Afficher Header -->
         @include('header')
-        
+
         <!-- Formulaire Création Véhicule -->
         <div class="container mt-5">
             <div class="row d-flex flex-row align-items-center div-form">
@@ -36,7 +36,7 @@
                 </form>
             </div>
         </div>
-        
+
         <!-- Afficher Footer -->
         @include('footer')
 
@@ -74,14 +74,14 @@
 
 <!-- JS -->
 <script>
-    var loadFile = function(event) {
-    var reader = new FileReader();
+var loadFile = function(event) {
+var reader = new FileReader();
     reader.onload = function(){
         var image = document.querySelector('.image-voiture');
         image.src = reader.result;
         var apercu = document.querySelector('.apercu');
         apercu.style.display = "block";
-        
+
     };
     reader.readAsDataURL(event.target.files[0]);
 };

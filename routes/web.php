@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CreateCar;
 use App\Http\Controllers\EditCar;
@@ -38,7 +39,6 @@ Route::get('/gestion-voiture', [ManageCar::class, 'initialize']);
     Route::post('create-vehicule', [CreateCar::class, 'createVehicule']);
     Route::post('update-vehicule', [EditCar::class, 'updateVehicule']);
 */
-    Route::get('/test', [CreateCar::class, 'test']);
 
     // création vehicule
     // modification modele
@@ -62,6 +62,9 @@ Route::get('/vehicule', function () {
 Route::get('/contact', function () {
     return view('contact');
 });
+Route::post('/create-contact', [ContactController::class, 'create']);
+Route::get('/listeMessage', [ContactController::class, 'show']);
+
 
 
 use App\Http\Controllers\LocationVehicule;
@@ -76,8 +79,7 @@ Route::get('rechercheDate/{n}/{date}', [RechercheLoc::class, 'initialize'])->whe
 });*/
 
 Route::middleware('auth')->group(function () {
-    Route::get('/', function ()    {
-    });
+
     Route::get('comptes', function () {
     });
 });

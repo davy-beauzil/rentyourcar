@@ -5,17 +5,18 @@
         <link rel="stylesheet" href="/public/css/style.css">
         <meta charset="utf-8" />
         <script src="javascript.js"></script>
-        <title>RentYourCarhubert</title>
+        <title>Contact</title>
     </head>
 
     <!-- Afficher Header -->
-    @include('header') 
+    @include('header')
 
     <body>
         <section>
             <div class="menucontact">
                 <h2>CONTACT</h2>
-                <form method="post" action="">
+                <form method="post" action="/create-contact">
+                    @csrf
                     <input type="text" name="nom" placeholder="Votre Nom" required>
                     <input type="text" name="prenom" placeholder="Votre Prénom" required>
                     <input type="text" name="tel" placeholder="Votre Téléphone" required>
@@ -24,12 +25,17 @@
                     <input type="submit" name="envoyer" value="Envoyer" class="submit-btn"required>
                     <br>
                 </form>
+                @if ($message = Session::get('success'))
+                <div class="alert alert-success" style='margin-left:5%;'>
+                    <p>{{ $message }}</p>
+                </div>
+             @endif
             </div>
         </section>
     </body>
 
     <!-- Afficher Footer -->
-    @include('footer') 
+    @include('footer')
 
 </html>
 

@@ -10,14 +10,12 @@
 <body>
 
     @include('header')
-    
+
     <div class="container mt-5">
     @isset($message)
         <div style="display: none; transition: .3s;"  class="resultMessage alert {{$classMessage}}" role="alert">{{$message}}</div>
     @endisset
     <div class="row d-flex flex-row">
-
-        
 
             <div class="left-content col-12 col-md-6">
                 <form class="d-flex flex-column form-choix" action="" method="POST">
@@ -31,13 +29,13 @@
                     </select>
                 </form>
             </div>
-            
+
             <div class="right-content col-12 col-md-6">
                 <div class="apercu">
-                    <img class="image-voiture col-12" alt="image de voiture" src="../../img/noimage.png" style="visibility:hidden;">
+                    <img class="image-voiture col-12" nam alt="image de voiture" src="../../img/noimage.png" style="visibility:hidden;">
                 </div>
             </div>
-            
+
 
         </div>
     </div>
