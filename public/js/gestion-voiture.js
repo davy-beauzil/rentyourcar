@@ -67,6 +67,12 @@ function selectChoix(){
 
 function generateForm(choix){
 
+    var csrf = document.createElement('input');
+    csrf.name = '_token';
+    csrf.type = 'hidden';
+    csrf.value = $('meta[name="csrf-token"]').attr('content');
+
+
     var imageVoiture = document.querySelector('.image-voiture');
     var infosModele = ['Nom', 'Tarif du kilomètre supplémentaire', 'Nombre de places', 'Vitesse maximale', 'Description'];
     var nameModele = ['nom', 'tarifKmSupplementaire', 'nbPlaces', 'vitesseMax', 'description'];
