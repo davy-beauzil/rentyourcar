@@ -4,10 +4,17 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CreateCar;
 use App\Http\Controllers\EditCar;
 use App\Http\Controllers\ManageCar;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('accueil');
 });
+
+
+Route::get('/login', function () {
+    return view('home');
+});
+
 
 Route::get('/vehicule', [ListeCar::class, 'initialize']);
 
@@ -31,7 +38,7 @@ Route::get('/gestion-voiture', [ManageCar::class, 'initialize']);
     Route::post('create-vehicule', [CreateCar::class, 'createVehicule']);
     Route::post('update-vehicule', [EditCar::class, 'updateVehicule']);
 */
-    Route::get('/test/{id}', [EditCar::class, 'test']);
+    Route::get('/test', [CreateCar::class, 'test']);
 
     // création vehicule
     // modification modele
@@ -64,9 +71,9 @@ use App\Http\Controllers\RechercheLoc;
 Route::get('rechercheDate/{n}/{date}', [RechercheLoc::class, 'initialize'])->where('n', '[0-9]+')->where('date');
 
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
 
 Route::middleware('auth')->group(function () {
     Route::get('/', function ()    {
