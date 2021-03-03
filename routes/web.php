@@ -75,12 +75,12 @@ Route::get('rechercheDate/{n}/{date}', [RechercheLoc::class, 'initialize'])->whe
     return view('welcome');
 });*/
 
-Route::middleware('auth')->group(function () {
+/*Route::middleware('auth')->group(function () {
     Route::get('/', function ()    {
     });
     Route::get('comptes', function () {
     });
-});
+});*/
 
 Auth::routes();
 use App\Http\Controllers\HomeController;

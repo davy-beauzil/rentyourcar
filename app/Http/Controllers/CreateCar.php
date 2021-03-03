@@ -13,6 +13,7 @@ class CreateCar extends Controller
 
     public function createModele(Request $request){
 
+        $saved = false;
         $modele = new Modele();
         $modele->nom = $request->input('nom');
         $modele->tarifKmSupplementaire = $request->input('tarifKmSupplementaire');
@@ -20,21 +21,22 @@ class CreateCar extends Controller
         $modele->vitesseMax = $request->input('vitesseMax');
         $modele->description = $request->input('description');
 
-        if($request->hasFile('image')){
-            $image = $request->file('image');
+        if($request->hasFile('photo')){
+            $image = $request->file('photo');
             $extension = $image->extension();
             $filename = time() . '.' . $extension;
             $image->move(public_path('img'), $filename);
             $modele->pathImage = $filename;
+            $saved = $modele->save();
         }
-    
-        $saved = $modele->save();
 
-        /*if(!$saved){
+        /*
+        if(!$saved){
             return view('gestion-vehicule', ['message' => 'Une erreur s\'est produite pendant l\'enregistrement du modèle de véhicule', 'classMessage' => 'alert-danger', 'function' => 'showMessage()']);
         }else{
             return view('gestion-vehicule', ['message' => 'Le modèle de voiture a bien été enregistré', 'classMessage' => 'alert-success', 'function' => 'showMessage()']);
-        }*/
+        }
+        */
     }
 
     public function updateModele(Request $request){
@@ -50,13 +52,13 @@ class CreateCar extends Controller
         $extension = $image->extension();
         $filename = time() . '.' . $extension;
         $image->move(public_path('img'), $filename);
-        $modele->pathImage = $filename;
+        $pathImage = $filename;
 
         $modele = Modele::find($id)
             ->update(['nom' => $nom, 
             'tarifKmSupplementaire' => $tarifKmSupplementaire, 
             'nbPlaces' => $nbPlaces, 'vitesseMax' => $vitesseMax, 
-            'description' => $description]);
+            'description' => $description, 'pathImage' => $pathImage]);
 
         return view('creation-voiture', ['button' => 'Créer', 'action' => '/creation-voiture', 'message' => 'Modèle correctement mis à jour']);
     }

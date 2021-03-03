@@ -9,8 +9,8 @@ function selectChoix(){
         formToDelete.remove();
     }
     var form = document.querySelector('.form-gestion');
-    if(form[1]){
-        form[1].remove();
+    if(form){
+        form.remove();
     }
     $('.image-voiture').css('visibility', 'hidden');
 
@@ -80,6 +80,7 @@ function generateForm(choix){
     form.className = 'form-gestion form-' + choix;
     form.setAttribute('action', choix);
     form.setAttribute('method', 'post');
+    form.setAttribute('enctype', 'multipart/form-data');
     form.append(csrf)
 
     var title = document.createElement('h3');
@@ -299,10 +300,8 @@ function findAllVehicules(conteneur){
     })
 }
 
-function createModele(){
+/*function createModele(){
     
-    console.log('je suis là')
-
     var nom = $('.nom').text();
     var tarifKmSupplementaire = $('.tarifKmSupplementaire').text();
     var nbPlaces = $('.nbPlaces').text();
@@ -310,6 +309,8 @@ function createModele(){
     var description = $('.description').text();
     var image = $('.image').files[0];
     var fd = new FormData(image);
+
+    alert(nom, tarifKmSupplementaire)
 
     $.ajax({
         url: "/create-modele",
@@ -321,7 +322,7 @@ function createModele(){
     }).fail(function(error){
         console.log(JSON.stringify(error))
     })
-}
+}*/
 
 
 function showMessage(){
