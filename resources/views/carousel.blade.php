@@ -3,7 +3,7 @@
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img class="d-block w-100" src="https://www.limoges-autos.com/wp-content/uploads/2013/05/slider_1_1.png" alt="First slide">
+                <img class="d-block w-100" src="img/Carrousel1.png" alt="First slide">
                 <div class="header-text hidden-xs">
                     <div class="carousel-caption">
                         <h1>
@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="https://www.secondhandtesla.com/wp-content/uploads/2019/11/1680x617.png" alt="Second slide">
+                <img class="d-block w-100" src="img/Carrousel2.jpg" alt="Second slide">
                 <div class="header-text hidden-xs">
                     <div class="carousel-caption">
                         <h1>
@@ -31,7 +31,7 @@
                 </div>
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="https://madeeasycars.uk/uploads/slider/SLIDE_6469225fe72b43636bb2100355c85b74.jpg" alt="Third slide">
+                <img class="d-block w-100" src="img/Carrousel3.jpg" alt="Third slide">
                 <div class="header-text hidden-xs">
                     <div class="carousel-caption">
                         <h1>
