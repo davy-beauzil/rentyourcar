@@ -21,7 +21,7 @@
 
     <div class="container mt-5">
     @isset($message)
-        <div style="display: none; transition: .3s;"  class="resultMessage alert {{$classMessage}}" role="alert">{{$message}}</div>
+        <div style="transition: .3s;" class="resultMessage alert {{$classMessage}}" role="alert">{{$message}}</div>
     @endisset
     <div class="row d-flex flex-row">
 

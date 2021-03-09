@@ -31,38 +31,46 @@ class CreateCar extends Controller
             $saved = $modele->save();
         }
 
-
-        /*
         if(!$saved){
-            return view('gestion-vehicule', ['message' => 'Une erreur s\'est produite pendant l\'enregistrement du modèle de véhicule', 'classMessage' => 'alert-danger', 'function' => 'showMessage()']);
+            return view('gestion-voiture', ['message' => 'Une erreur s\'est produite pendant l\'enregistrement du modèle de véhicule', 'classMessage' => 'alert-danger']);
         }else{
-            return view('gestion-vehicule', ['message' => 'Le modèle de voiture a bien été enregistré', 'classMessage' => 'alert-success', 'function' => 'showMessage()']);
+            return view('gestion-voiture', ['message' => 'Le modèle de voiture a bien été enregistré', 'classMessage' => 'alert-success']);
         }
-        */
     }
 
     public function updateModele(Request $request){
 
-        $id = $request->id;
+        $id = $request->input('id');
         $nom = $request->input('nom');
         $tarifKmSupplementaire = $request->input('tarifKmSupplementaire');
         $nbPlaces = $request->input('nbPlaces');
         $vitesseMax = $request->input('vitesseMax');
         $description = $request->input('description');
 
-        $image = $request->file('photo');
-        $extension = $image->extension();
-        $filename = time() . '.' . $extension;
-        $image->move(public_path('img'), $filename);
-        $pathImage = $filename;
+        if($request->hasFile('photo')){
+            $image = $request->file('photo');
+            $extension = $image->extension();
+            $filename = time() . '.' . $extension;
+            $image->move(public_path('img'), $filename);
+            $pathImage = $filename;
 
-        $modele = Modele::find($id)
-
+            $modele = Modele::find($id)
             ->update(['nom' => $nom,
             'tarifKmSupplementaire' => $tarifKmSupplementaire,
             'nbPlaces' => $nbPlaces, 'vitesseMax' => $vitesseMax,
             'description' => $description, 'pathImage' => $pathImage]);
+        }else{
+            $modele = Modele::find($id)
+            ->update(['nom' => $nom,
+            'tarifKmSupplementaire' => $tarifKmSupplementaire,
+            'nbPlaces' => $nbPlaces, 'vitesseMax' => $vitesseMax,
+            'description' => $description]);
+        }
 
-        return view('creation-voiture', ['button' => 'Créer', 's' => '/creation-voiture', 'message' => 'Modèle correctement mis à jour']);
+        if($modele){
+            return view('gestion-voiture', ['message' => 'Le modèle a bien été mis à jour', 'classMessage' => 'alert-success']);
+        }else{
+            return view('gestion-voiture', ['message' => 'Une erreur est survenue', 'classMessage' => 'alert-danger']);
+        }   
     }
 }

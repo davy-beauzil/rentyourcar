@@ -18,22 +18,51 @@ class EditCar extends Controller
         $vehiculeId = $request->input('vehiculeId');
 
         $modele = Modele::where('id', '=', $modeleId)->first();
-        return view('modification-voiture', ['button' => 'Modifier', 'modele' => $modrele]);
+        return view('modification-voiture', ['button' => 'Modifier', 'modele' => $modele]);
     }
 
     public function updateModele(Request $request){
-        $id = $request->input('modele-id');
-        $nom = $request->input('nom');
-        $tarifKmSupplementaire = $request->input('tarifKmSupplementaire');
-        $nbPlaces = $request->input('nbPlaces');
-        $vitesseMax = $request->input('vitesseMax');
-        $description = $request->input('description');
 
-        $modeleToUpdate = Modele::where('id', $id)->update(['nom' => $nom, 'tarifKmSupplementaire' => $tarifKmSupplementaire, 'nbPlaces' => $nbPlaces, 'vitesseMax' => $vitesseMax, 'description' => $description]);
+        if($request->input('btn-update') === '1'){
+            $id = $request->input('id');
+            $modele = Modele::find($id);
+            
+            $modele->nom = $request->input('nom');
+            $modele->tarifKmSupplementaire = $request->input('tarifKmSupplementaire');
+            $modele->nbPlaces = $request->input('nbPlaces');
+            $modele->vitesseMax = $request->input('vitesseMax');
+            $modele->description = $request->input('description');
 
-        $modeles = Modele::All();
-        $vehicules = Vehicule::All();
-        return view('gestion-voiture', ['listeModeles' => $modeles, 'listeVehicules' => $vehicules]);
+            if($request->hasFile('photo')){
+                $image = $request->file('photo');
+                $extension = $image->extension();
+                $filename = time() . '.' . $extension;
+                $image->move(public_path('img'), $filename);
+                $modele->pathImage = $filename;
+            }
+
+            $saved = $modele->save();
+
+            $modeles = Modele::All();
+            $vehicules = Vehicule::All();
+
+            if($saved){
+                return view('gestion-voiture', ['message' => 'Le modèle a bien été mis à jour', 'classMessage' => 'alert-success', 'listeModeles' => $modeles, 'listeVehicules' => $vehicules]);
+            }else{
+                return view('gestion-voiture', ['message' => 'Une erreur est survenue', 'classMessage' => 'alert-danger', 'listeModeles' => $modeles, 'listeVehicules' => $vehicules]);
+            }   
+        }else if($request->input('btn-delete') === '1'){
+            $modele = Modele::find($request->input('id'));
+            $deleted = $modele->delete();
+
+            if($deleted){
+                return view('gestion-voiture', ['message' => 'Le modèle a bien été supprimé', 'classMessage' => 'alert-success']);
+            }else {
+                return view('gestion-voiture', ['message' => 'Une erreur est survenue', 'classMessage' => 'alert-danger']);
+            }
+        }
+        
+        
     }
 
     public function updateVehicule(Request $request){

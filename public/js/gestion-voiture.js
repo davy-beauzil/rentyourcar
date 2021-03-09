@@ -1,3 +1,16 @@
+var alertMessage = document.querySelectorAll('.resultMessage');
+setTimeout(function(){
+    for(var i = 0 ; i < alertMessage.length ; i++){
+        alertMessage[i].style.opacity = '0';
+    }
+    setTimeout(function(){
+        for(var i = 0 ; i < alertMessage.length ; i++){
+            alertMessage[i].style.display = 'none';
+        }
+    }, 300)
+}, 5000);
+
+
 function selectChoix(){
     var infosModele = ['Nom', 'Tarif du kilomètre supplémentaire', 'Nombre de places', 'Vitesse maximale', 'Description'];
     var nameModele = ['nom', 'tarifKmSupplementaire', 'nbPlaces', 'vitesseMax', 'description'];
@@ -10,17 +23,16 @@ function selectChoix(){
     divForm.classList.add('div-form');
 
     // je réinitialise les éléments de la page
-    var formToDelete = $('.div-form');
+    var formToDelete = document.querySelector('.div-form');
     if(formToDelete){
         formToDelete.remove();
     }
     var form = document.querySelector('.form-gestion');
-
     if(form){
         form.remove();
     }
-
-    $('.image-voiture').css('visibility', 'hidden');
+    var imageVoiture = document.querySelector('.image-voiture');
+    imageVoiture.style.visibility = 'hidden';
 
     // si c'est pour une modification, je demande l'id de la chose à modifier
     if(choix == 'update-modele' || choix == 'update-vehicule'){
@@ -51,7 +63,7 @@ function selectChoix(){
             }
             generateForm(choix);
             if(choix == 'update-modele'){
-                var id = select[select.selectedIndex].getAttribute('modele-id');
+                var id = select[select.selectedIndex].getAttribute('value');
                 findModele(id);
             }else if(choix == 'update-vehicule'){
                 var id = select[select.selectedIndex].getAttribute('vehicule-id');
@@ -67,26 +79,28 @@ function selectChoix(){
 
 function generateForm(choix){
 
+    // ajout du token
     var csrf = document.createElement('input');
     csrf.name = '_token';
     csrf.type = 'hidden';
     csrf.value = $('meta[name="csrf-token"]').attr('content');
 
-
     var imageVoiture = document.querySelector('.image-voiture');
+    var div = document.querySelector('.left-content');
+
     var infosModele = ['Nom', 'Tarif du kilomètre supplémentaire', 'Nombre de places', 'Vitesse maximale', 'Description'];
     var nameModele = ['nom', 'tarifKmSupplementaire', 'nbPlaces', 'vitesseMax', 'description'];
 
-    var div = document.querySelector('.left-content');
-
+    // création du formulaire
     form = document.createElement('form');
     form.className = 'form-gestion form-' + choix;
     form.setAttribute('action', choix);
     form.setAttribute('method', 'post');
-    form.setAttribute('enctype', 'multipart/form-data');
+    form.setAttribute('enctype', 'multipart/form-data'); // pour encoder les données (permet l'envoi de l'image)
     form.append(csrf)
 
 
+    // création du titre
     var title = document.createElement('h3');
     title.style.margin = '20px 0 10px 0';
     var imageInput = document.createElement('input');
@@ -111,10 +125,10 @@ function generateForm(choix){
     var labelImageInput = document.createElement('label');
     labelImageInput.setAttribute('for', 'photo');
     labelImageInput.textContent = "Choisir une photo";
+
     var button = document.createElement('button');
     button.className = 'btn btn-secondary';
     button.type = 'submit';
-    form.append(title);
 
     if(choix == 'update-modele' || choix == 'update-vehicule'){
         var label = document.createElement('label');
@@ -122,9 +136,10 @@ function generateForm(choix){
         label.textContent = "Identifiant"
         var inputId = document.createElement('input');
         inputId.name = 'id';
-        inputId.setAttribute('disabled', true);
+        inputId.setAttribute('readonly', true);
         inputId.className = "form-control inputId";
         inputId.style.margin = "0 0 10px 0";
+        form.append(title);
         form.append(label);
         form.append(inputId);
     }
@@ -151,10 +166,20 @@ function generateForm(choix){
         }else{
             title.textContent = 'Modifier un modèle de voiture existant';
             button.textContent = 'Modifier';
+            button.name = 'btn-update';
+            button.value = '1'
+            var deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Supprimer';
+            deleteButton.className = 'btn btn-danger';
+            deleteButton.type = 'submit';
+            deleteButton.name = 'btn-delete';
+            deleteButton.style.marginRight = '10px';
+            deleteButton.value = '1';
         }
         form.append(labelImageInput);
         form.append(imageInput);
         form.append(button);
+        form.append(deleteButton);
         div.append(form);
 
     }else if(choix == 'create-vehicule' || choix == 'update-vehicule'){
@@ -166,6 +191,7 @@ function generateForm(choix){
         labelModele.setAttribute('for', 'modele');
         labelModele.style.margin = '0';
         labelModele.textContent = 'Modèle du véhicule';
+        console.log(labelModele)
         form.append(labelModele);
         form.append(modele);
 
@@ -192,10 +218,14 @@ function generateForm(choix){
             button.textContent = 'Modifier';
         }
     }
+    form.append(button);
+    div.append(form);
+
 }
 
 function findModele(id){
 
+    console.log(id);
     $.ajax({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -205,6 +235,7 @@ function findModele(id){
         data: {id: id},
         dataType: "json",
     }).done(function(response){
+        console.log(response);
         $('.inputId').val(response[0]['id']);
         $('.nom').val(response[0]['nom']);
         $('.tarifKmSupplementaire').val(response[0]['tarifKmSupplementaire']);
@@ -229,7 +260,7 @@ function findAllModeles(conteneur, choix){
         dataType: "json",
     }).done(function(response){
         for(var i = 0 ; i < response.length ; i++){
-            $(conteneur).append('<option value="'+ response[i]['nom'] +'" modele-id="'+ response[i]['id'] +'" >'+ response[i]['nom'] + '</option>');
+            $(conteneur).append('<option value="'+ response[i]['id'] +'">'+ response[i]['nom'] + '</option>');
         }
         setTimeout(function(){
             if(document.querySelector('.form-update-vehicule')){
@@ -326,14 +357,3 @@ function findAllVehicules(conteneur){
         console.log(JSON.stringify(error))
     })
 }*/
-
-
-
-function showMessage(){
-    var message = document.querySelector('.resultMessage');
-    message.style.display = 'block';
-
-    setTimeout(function(){
-        message.style.display = 'none';
-    }, 5000)
-}

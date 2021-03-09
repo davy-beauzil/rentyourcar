@@ -19,34 +19,27 @@ Route::get('/login', function () {
 
 Route::get('/vehicule', [ListeCar::class, 'initialize']);
 
-/* Gestion voiture */
-// page de choix
+/* Gestion voiture : Davy */
+// renvoit la page principale
 Route::get('/gestion-voiture', [ManageCar::class, 'initialize']);
 
-    // création modele
+    // single search
     Route::post('/findModele', [EditCar::class, 'findModele']);
     Route::post('/findVehicule', [EditCar::class, 'findVehicule']);
+
+    // many search
     Route::post('/findAllModeles', [EditCar::class, 'findAllModeles']);
     Route::post('/findAllVehicules', [EditCar::class, 'findAllVehicules']);
 
+    // création
     Route::post('/create-modele', [CreateCar::class, 'createModele']);
+    Route::post('/create-vehicule', [ManageCar::class, 'createVehicule']);
+
+    // mise à jour & suppression
     Route::post('/update-modele', [EditCar::class, 'updateModele']);
-    Route::post('/create-vehicule', [CreateCar::class, 'createVehicule']);
-    Route::post('/update-vehicule', [EditCar::class, 'updateVehicule']);
-/*
-    Route::post('create-modele', [CreateCar::class, 'createModele']);
-    Route::post('update-modele', [EditCar::class, 'updateModele']);
-    Route::post('create-vehicule', [CreateCar::class, 'createVehicule']);
-    Route::post('update-vehicule', [EditCar::class, 'updateVehicule']);
-*/
+    Route::post('/update-vehicule', [ManageCar::class, 'updateVehicule']);
 
-    // création vehicule
-    // modification modele
-
-
-Route::post('/gestion-voiture', [EditCar::class, 'updateModele']);
-
-
+/* Gestion voiture : Davy */
 
 
 

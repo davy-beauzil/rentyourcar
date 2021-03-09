@@ -16,7 +16,7 @@
 						<a class="dropdown-item" href="../historique">Historique</a>
 					</div>
 				</li>
-				<li><a class="nav-link" href="../creation-voiture">CreationVehicule</a></li>
+				<li><a class="nav-link" href="../gestion-voiture">CreationVehicule</a></li>
 				<li><a class="nav-link" href="../contact">Contact</a></li>
 				<li><a class="btn btn-danger navbar-btn" href="../login">Connexion</a></li>
 		</ul>
