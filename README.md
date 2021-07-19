@@ -1,61 +1,36 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+## Lien du projet
+http://rentyoucar.davy-beauzil.fr/
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Contexte : 
+Le site RentYourCar a pour but de mettre à disposition en location les véhicules que propose l’entreprise.
+Cette dernière doit pouvoir alors gérer ces véhicules afin d’en ajouter, les modifier ou les supprimer.
 
-## About Laravel
+Le projet a été réalisé dans le cadre du passage du BTS SIO, à quatre développeurs, avec une répartition des tâches de façon à ce que tout le monde touche à tout (pour valider l'examen).
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Début du projet :
+Au départ, nous avons réalisé un projet de base identique pour chaque membre du groupe de travail disponible sur un serveur GIT afin que chacun puisse travailler sur la même base de travail, et puisse partager le travail une fois terminé.
+Ce projet a été réalisé sous Laravel 8, avec une base de données MySQL.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Travail réalisé personnellement :
+Dans un premier temps, je me suis occupé de créer les migrations nécessaires à ma partie (véhicules et modèle de véhicule).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Une fois que la base de données était prête, j’ai créé une page de gestion des véhicules/modèles.
+Je voulais faire différents formulaires pour chaque action à faire (créer, modifier, lire et supprimer).
+Cependant, cela impliquait de répéter le même travail quatre fois de suite, ce qui n’est pas vraiment optimisé.
 
-## Learning Laravel
+Après réflexion, vers la 3ème séance, j’ai choisi de réaliser un formulaire unique qui se gérère en fonction de ce que souhaite faire l’utilisateur, le tout en Javascript. C’est une méthode selon moi plus conviviale pour l’utilisateur, mais après réflexion, plus difficile à mettre en place pour le développeur car le code devient rapidement imcompréhensible et difficilement modifiable.
+Cette partie là a été fonctionnelle à la fin des 7 semaines.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Ayant du temps supplémentaire à notre disposition, nous avons pu ajouter du contenu à notre site pour qu’il soit plus complet.
+J’ai alors personnellement travaillé sur la création de pages permettant de voir dans des tableaux les récapitulatifs des véhicules, modèles et locations présents dans la base de données.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Les deux parties sur lesquelles j’ai pu travailler (CRUD véhicules & modèles / tableaux récapitulatifs) sont disponibles que par des utilisateurs ayant les droits d’administrateur. Un simple client qui se connecte ne peut bien évidemment pas consulter ses informations ou ajouter des véhicules en base de données.
 
-## Laravel Sponsors
+## Procédures mises en place :
+À chaque fin de séance, nous mettions en commun le travail que nous avions réalisé sur le serveur GIT afin que pour la séance prochaine, nous reprenions le travail sur une base propre et commune.
+Vers la fin du projet, nous travaillions plus à résoudre quelques bugs, donc la mise en commun du travail était plus fréquente.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Le fait d’avoir tous le projet à jour permettait à chacun de faire un check-up et si besoin faire remonter les bugs à corriger.
 
-### Premium Partners
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
 
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
