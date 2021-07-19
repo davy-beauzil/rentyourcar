@@ -18,7 +18,7 @@ Une fois que la base de données était prête, j’ai créé une page de gestio
 Je voulais faire différents formulaires pour chaque action à faire (créer, modifier, lire et supprimer).
 Cependant, cela impliquait de répéter le même travail quatre fois de suite, ce qui n’est pas vraiment optimisé.
 
-Après réflexion, vers la 3ème séance, j’ai choisi de réaliser un formulaire unique qui se gérère en fonction de ce que souhaite faire l’utilisateur, le tout en Javascript. C’est une méthode selon moi plus conviviale pour l’utilisateur, mais après réflexion, plus difficile à mettre en place pour le développeur car le code devient rapidement imcompréhensible et difficilement modifiable.
+Après réflexion, vers la 3ème séance, j’ai choisi de réaliser un formulaire unique qui se génère en fonction de ce que souhaite faire l’utilisateur, le tout en Javascript. C’est une méthode selon moi plus conviviale pour l’utilisateur, mais après réflexion, plus difficile à mettre en place pour le développeur car le code devient rapidement incompréhensible et difficilement modifiable.
 Cette partie là a été fonctionnelle à la fin des 7 semaines.
 
 Ayant du temps supplémentaire à notre disposition, nous avons pu ajouter du contenu à notre site pour qu’il soit plus complet.
